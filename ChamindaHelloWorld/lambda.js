@@ -9,8 +9,8 @@ exports.handler = function (event, context, callback) {
         query: {},
         headers: { "Accept": "*/*", "Content-Type": "application/json" },
         body: JSON.stringify({
-            "userName": "Your email address",
-            "password": "Your password"
+            "userName": "chamindaa@virtusa.com",
+            "password": "1qaz2wsx@A"
         })
     }).then((response) => {
         var access_token = "bearer " + response.body.access_token;
@@ -21,6 +21,18 @@ exports.handler = function (event, context, callback) {
             query: { "page": "0", "size": "1" },
             headers: { "X-Authorization": access_token, "Accept": "*/*" }
         }).then((response) => {
+            console.log(response);
+            // your code goes here
+        }).catch((err) => {
+            // error handling goes here
+        });
+        Swagger.http({
+            url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/account-types`,
+            method: 'get',
+            query: { "page": "1", "size": "2" },
+            headers: { "X-Authorization": access_token, "Accept": "*/*" }
+        }).then((response) => {
+            console.log(response);
             // your code goes here
         }).catch((err) => {
             // error handling goes here
