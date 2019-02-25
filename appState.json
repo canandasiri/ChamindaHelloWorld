@@ -1,0 +1,77 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "5035679c-127e-40bd-9fe4-4f0c7cf8d8ed": {
+        "id": "5035679c-127e-40bd-9fe4-4f0c7cf8d8ed",
+        "parent": null,
+        "name": "ChamindaHelloWorld",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "c532142c-1bb0-454f-a43e-6f54d898dd3a"
+        ],
+        "isRemovable": false,
+        "filePath": "ChamindaHelloWorld"
+      },
+      "c532142c-1bb0-454f-a43e-6f54d898dd3a": {
+        "id": "c532142c-1bb0-454f-a43e-6f54d898dd3a",
+        "parent": "5035679c-127e-40bd-9fe4-4f0c7cf8d8ed",
+        "name": "lambda.js",
+        "type": "LAMBDA_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "ChamindaHelloWorld/lambda.js",
+        "code": "\nlet Swagger = require('swagger-client');\n\nexports.handler = function (event, context, callback) {\n\n    Swagger.http({\n        url: 'https://services.apixplatform.com/api-sandbox/application/token',\n        method: 'post',\n        query: {},\n        headers: { \"Accept\": \"*/*\", \"Content-Type\": \"application/json\" },\n        body: JSON.stringify({\n            \"userName\": \"Your email address\",\n            \"password\": \"Your password\"\n        })\n    }).then((response) => {\n        var access_token = \"bearer \" + response.body.access_token;\n        // Insert new API calls here to call with APIX Access Token\n        Swagger.http({\n            url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/accounts`,\n            method: 'get',\n            query: { \"page\": \"0\", \"size\": \"1\" },\n            headers: { \"X-Authorization\": access_token, \"Accept\": \"*/*\" }\n        }).then((response) => {\n            // your code goes here\n        }).catch((err) => {\n            // error handling goes here\n        });\n\n\n        callback(null, access_token);\n    }).catch((err) => {\n        console.log(err);\n        callback(\"Execution failed\");\n    });\n\n}",
+        "triggers": [],
+        "config": {
+          "runtime": "nodejs8.10",
+          "timeout": 60,
+          "memory": 128
+        }
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "5035679c-127e-40bd-9fe4-4f0c7cf8d8ed",
+    "openFiles": [
+      "c532142c-1bb0-454f-a43e-6f54d898dd3a"
+    ],
+    "currentFileId": "c532142c-1bb0-454f-a43e-6f54d898dd3a",
+    "resources": {},
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {
+        "swagger-client": {
+          "name": "swagger-client",
+          "version": "3.8.21"
+        }
+      }
+    },
+    "lambdaId": "c532142c-1bb0-454f-a43e-6f54d898dd3a"
+  },
+  "PROJECT_META": {
+    "projectName": "ChamindaHelloWorld",
+    "projectDescription": "Hello World",
+    "projectVersion": "1.0.0",
+    "projectRegion": "ap-southeast-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1551074468013
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "ChamindaHelloWorld",
+      "url": "https://github.com/canandasiri/ChamindaHelloWorld"
+    }
+  }
+}
