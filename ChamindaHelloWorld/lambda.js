@@ -15,26 +15,24 @@ exports.handler = function (event, context, callback) {
     }).then((response) => {
         var access_token = "bearer " + response.body.access_token;
         // Insert new API calls here to call with APIX Access Token
-        //Swagger.http({
-        //    url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/accounts`,
-        //    method: 'get',
-        //    query: { "page": "0", "size": "1" },
-        //    headers: { "X-Authorization": access_token, "Accept": "*/*" }
-        //}).then((response) => {
-        //    console.log(response);
-        //    console.log("-----------Calling Account types-----------")
-        //    // your code goes here
-        //}).catch((err) => {
-            // error handling goes here
-        //});
         Swagger.http({
-            url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/account-types`,
+            url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/accounts`,
             method: 'get',
-            query: { "page": "0", "size": "1" },
+            query: { "page": "0", "size": "12" },
             headers: { "X-Authorization": access_token, "Accept": "*/*" }
         }).then((response) => {
             console.log(response);
-            // your code goes here
+            console.log("-----------Calling Account types-----------")
+            
+            Swagger.http({
+                url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/account-types`,
+                method: 'get',
+                query: { "page": "0", "size": "1" },
+                headers: { "X-Authorization": access_token, "Accept": "*/*" }
+                }).then((response) => {
+                    console.log(response);
+                }).catch((err) => {
+            });
         }).catch((err) => {
             // error handling goes here
         });
