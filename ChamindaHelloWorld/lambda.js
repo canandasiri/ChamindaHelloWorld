@@ -22,6 +22,7 @@ exports.handler = function (event, context, callback) {
             headers: { "X-Authorization": access_token, "Accept": "*/*" }
         }).then((response) => {
             console.log(response);
+            console.log("-----------Calling Account types-----------")
             // your code goes here
         }).catch((err) => {
             // error handling goes here
