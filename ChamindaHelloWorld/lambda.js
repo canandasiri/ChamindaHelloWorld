@@ -23,16 +23,18 @@ exports.handler = function (event, context, callback) {
         }).then((response) => {
             console.log(response);
             console.log("-----------Calling Account types-----------")
-            
+
             Swagger.http({
                 url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/account-types`,
                 method: 'get',
                 query: { "page": "0", "size": "1" },
                 headers: { "X-Authorization": access_token, "Accept": "*/*" }
-                }).then((response) => {
-                    console.log(response);
-                }).catch((err) => {
+            }).then((response) => {
+                console.log(response);
+            }).catch((err) => {
             });
+
+            
         }).catch((err) => {
             // error handling goes here
         });
