@@ -17,16 +17,17 @@ exports.handler = function (event, context, callback) {
         var access_token = "bearer " + response.body.access_token;
         // Insert new API calls here to call with APIX Access Token
         Swagger.http({
-            url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/accounts`,
+            url: `https://api.apixplatform.com/sbaccount/1.0/account/accounts/accounts`,
             method: 'get',
             query: { "page": "0", "size": "1" },
             headers: { "X-Authorization": access_token, "Accept": "*/*" }
         }).then((response) => {
-            console.log(response);
-            console.log("-----------Calling Account types-----------")    
+            // your code goes here
+            console.log(response.body)
         }).catch((err) => {
             // error handling goes here
         });
+
         callback(null, access_token);
     }).catch((err) => {
         console.log(err);
