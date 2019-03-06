@@ -2,7 +2,7 @@
 let Swagger = require('swagger-client');
 
 exports.handler = function (event, context, callback) {
-
+    console.log("-----------Getting app token -----------")
     Swagger.http({
         url: 'https://services.apixplatform.com/api-sandbox/application/token',
         method: 'post',
@@ -13,6 +13,7 @@ exports.handler = function (event, context, callback) {
             "password": "1qaz2wsx@A"
         })
     }).then((response) => {
+        console.log("-----------Calling Account -----------")
         var access_token = "bearer " + response.body.access_token;
         // Insert new API calls here to call with APIX Access Token
         Swagger.http({
@@ -22,19 +23,7 @@ exports.handler = function (event, context, callback) {
             headers: { "X-Authorization": access_token, "Accept": "*/*" }
         }).then((response) => {
             console.log(response);
-            console.log("-----------Calling Account types-----------")
-
-            Swagger.http({
-                url: `https://api.apixplatform.com/sbaccount/1.0/AccountService/accounts/account-types`,
-                method: 'get',
-                query: { "page": "0", "size": "1" },
-                headers: { "X-Authorization": access_token, "Accept": "*/*" }
-            }).then((response) => {
-                console.log(response);
-            }).catch((err) => {
-            });
-
-            
+            console.log("-----------Calling Account types-----------")    
         }).catch((err) => {
             // error handling goes here
         });
