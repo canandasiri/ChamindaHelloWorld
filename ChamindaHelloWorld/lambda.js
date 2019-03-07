@@ -24,7 +24,7 @@ exports.handler = function (event, context, callback) {
         }).then((response) => {
             // your code goes here
             console.log(response.body)
-
+            console.log("-----------Calling banks -----------")
             Swagger.http({
                 url: `https://api.apixplatform.com/sbbank/1.0/bank/banks/banks`,
                 method: 'get',
@@ -33,6 +33,7 @@ exports.handler = function (event, context, callback) {
             }).then((response) => {
                 // your code goes here
                 console.log(response.body)
+                console.log("-----------Calling branches -----------")
                 Swagger.http({
                     url: `https://api.apixplatform.com/sbbank/1.0/bank/banks/branches`,
                     method: 'get',
@@ -40,6 +41,7 @@ exports.handler = function (event, context, callback) {
                     headers: { "X-Authorization": "22", "Accept": "*/*" }
                 }).then((response) => {
                     // your code goes here
+                     console.log(response.body)
                 }).catch((err) => {
                     // error handling goes here
                 });
