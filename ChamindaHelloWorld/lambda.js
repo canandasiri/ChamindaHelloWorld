@@ -38,7 +38,7 @@ exports.handler = function (event, context, callback) {
                     url: `https://api.apixplatform.com/sbbank/1.0/bank/banks/branches`,
                     method: 'get',
                     query: { "page": "1", "size": "2" },
-                    headers: { "X-Authorization": "22", "Accept": "*/*" }
+                    headers: { "X-Authorization": access_token, "Accept": "*/*" }
                 }).then((response) => {
                     // your code goes here
                      console.log(response.body)
