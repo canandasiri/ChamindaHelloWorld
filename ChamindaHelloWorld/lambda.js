@@ -41,19 +41,7 @@ exports.handler = function (event, context, callback) {
                     headers: { "X-Authorization": access_token, "Accept": "*/*" }
                 }).then((response) => {
                     // your code goes here
-                    console.log(response.body)
-                    Swagger.http({
-                        url: `https://api.apixplatform.com/facematch/1.0/v1/photo/verifyPair`,
-                        method: 'post',
-                        query: {},
-                        headers: { "appId": "2d9288", "appKey": "506505f70970ce16988f", "X-Authorization": access_token, "Accept": "application/json", "Content-Type": "application/x-www-form-urlencoded" },
-                        body: `image1=@/Users/chamindaa/Documents/OIP/APIX/Hyperverge/Passport.png&image2=@/Users/chamindaa/Documents/OIP/APIX/Hyperverge/Selfie.jpg&type=id`
-                    }).then((response) => {
-                        // your code goes here
-                    }).catch((err) => {
-                        // error handling goes here
-                        console.log(err);
-                    });
+                     console.log(response.body)
                 }).catch((err) => {
                     // error handling goes here
                     console.log(err);
