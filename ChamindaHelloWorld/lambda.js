@@ -9,8 +9,8 @@ exports.handler = function (event, context, callback) {
         query: {},
         headers: { "Accept": "*/*", "Content-Type": "application/json" },
         body: JSON.stringify({
-            "userName": "chamindaa@virtusa.com",
-            "password": "1qaz2wsx@A"
+            "userName": "modelbankuser@inboxbear.com",
+            "password": "1qaz2wsx@"
         })
     }).then((response) => {
         console.log("-----------Calling Account -----------")
@@ -44,14 +44,17 @@ exports.handler = function (event, context, callback) {
                      console.log(response.body)
                 }).catch((err) => {
                     // error handling goes here
+                    console.log(err);
                 });
                 console.log(response.body)
             }).catch((err) => {
                 // error handling goes here
+                console.log(err);
             });
 
         }).catch((err) => {
             // error handling goes here
+            console.log(err);
         });
 
         callback(null, access_token);
